@@ -21031,21 +21031,22 @@ class Wad {
 
 		else if ( this.source === 'mic' ) {
 			if ( _common__WEBPACK_IMPORTED_MODULE_2__["permissionsGranted"].micConsent ) {
-				if ( arg.arg === null ) {
-					Object(_common__WEBPACK_IMPORTED_MODULE_2__["setUpMic"])(this, arg);
-					Object(_common__WEBPACK_IMPORTED_MODULE_2__["plugEmIn"])(this, arg);
-				}
-				else {
-					this.filter = Object(_common__WEBPACK_IMPORTED_MODULE_2__["constructFilter"])(arg);
-					this.vibrato = Object(_common__WEBPACK_IMPORTED_MODULE_2__["constructVibrato"])(arg);
-					this.tremolo = Object(_common__WEBPACK_IMPORTED_MODULE_2__["constructTremolo"])(arg);
-					this.reverb = Object(_common__WEBPACK_IMPORTED_MODULE_2__["constructReverb"])(this, arg);
-					this.panning = Object(_common__WEBPACK_IMPORTED_MODULE_2__["constructPanning"])(arg);
-					this.delay = Object(_common__WEBPACK_IMPORTED_MODULE_2__["constructDelay"])(arg);
-					this.constructExternalFx(arg, _common__WEBPACK_IMPORTED_MODULE_2__["context"]);
-					Object(_common__WEBPACK_IMPORTED_MODULE_2__["setUpMic"])(this, arg);
-					Object(_common__WEBPACK_IMPORTED_MODULE_2__["plugEmIn"])(this, arg);
-				}
+				Object(_common__WEBPACK_IMPORTED_MODULE_2__["getConsent"])(this, arg).then(() =>{
+					if ( arg.arg === null ) {
+						Object(_common__WEBPACK_IMPORTED_MODULE_2__["plugEmIn"])(this, arg);
+					}
+					else {
+						this.filter = Object(_common__WEBPACK_IMPORTED_MODULE_2__["constructFilter"])(arg);
+						this.vibrato = Object(_common__WEBPACK_IMPORTED_MODULE_2__["constructVibrato"])(arg);
+						this.tremolo = Object(_common__WEBPACK_IMPORTED_MODULE_2__["constructTremolo"])(arg);
+						this.reverb = Object(_common__WEBPACK_IMPORTED_MODULE_2__["constructReverb"])(this, arg);
+						this.panning = Object(_common__WEBPACK_IMPORTED_MODULE_2__["constructPanning"])(arg);
+						this.delay = Object(_common__WEBPACK_IMPORTED_MODULE_2__["constructDelay"])(arg);
+						this.constructExternalFx(arg, _common__WEBPACK_IMPORTED_MODULE_2__["context"]);
+						Object(_common__WEBPACK_IMPORTED_MODULE_2__["setUpMic"])(this, arg);
+						Object(_common__WEBPACK_IMPORTED_MODULE_2__["plugEmIn"])(this, arg);
+					}
+				});
 			}
 			else { 
 				Object(_common__WEBPACK_IMPORTED_MODULE_2__["logMessage"])('You have not given your browser permission to use your microphone.');
