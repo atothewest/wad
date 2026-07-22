@@ -233,13 +233,14 @@ class Wad {
 		else if ( this.source === 'mic' ) {
 			if ( permissionsGranted.micConsent ) {
 				if ( arg.arg === null ) {
+					setUpMic(this, arg);
 					plugEmIn(this, arg);
 				}
 				else {
 					this.filter = constructFilter(arg);
 					this.vibrato = constructVibrato(arg);
 					this.tremolo = constructTremolo(arg);
-					this.reverb = constructReverb(arg);
+					this.reverb = constructReverb(this, arg);
 					this.panning = constructPanning(arg);
 					this.delay = constructDelay(arg);
 					this.constructExternalFx(arg, context);
